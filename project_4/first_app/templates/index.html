@@ -1,15 +1,32 @@
-{%load static%}
+{% extends 'base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-  </head>
-  <body>
-    <h1>hi</h1>
-    <img src="{%static 'images/Bird2.jpg'%}" alt="" />
-  </body>
-</html>
+
+{% block content  %}
+{{block.super}}
+<h1>{{id.name}}</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User Id</th>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for i in data %}
+    <tr>
+      <th scope="row">{{i.userId}}</th>
+      <td>{{i.id}}</td>
+      <td>{{i.title}}</td>
+      <td>{{i.body}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+    <h1>I am inside first app</h1>
+    <img src="{% static 'images/bird2.jpeg' %}" />
+
+
+{% endblock %}  
