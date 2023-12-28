@@ -4,8 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>homepage</h1>
+    <h3>My Name :</h3>
+    <h4>{{Name}}</h4>
+    <h3>My Age :</h3>
+    <h4>{{age}}</h4>
+    <h3>Length of my name :</h3>
+    <h4>{{ Name | length }}</h4>
+    <h3>My age after 2 years :</h3>
+    <h4>{{ age | add:"2" }}</h4>
+    <h3>Add slash :</h3>
+    <h4>{{ slash | addslashes }}</h4>
+    <h3>First letter capital :</h3>
+    <h4>{{ 'arpan' | capfirst }}</h4>
+    <h3>center value "</h3>
+    <h4>{{ "Jai" | center:"15" }}</h4>
+    <h3>Cut :</h3>
+    <h4>{{ 'String with spaces' | cut:" " }}</h4>
+    <h3>Current Date Time</h3>
+    <h4>{{ datetime | date:"D d M Y" }}</h4>
+    <h3>Default Value</h3>
+    <h4>{{ "" | default:"Empty String" }}</h4>
+    <h3>Dictionary Short</h3>
+    <h4>{{ list | dictsort:"name" }}</h4>
+
+    <h4>DIVISIBLEBY :{{ 21 | divisibleby:"3" }}</h4>
+    <h4>FIRST :{{ list | first }}</h4>
+    <h4>JOIN :{{ list | join:" // " }}</h4>
+    <h4>LAST :{{ list | last }}</h4>
+    <h4>LENGTH :{{ list | length }}</h4>
+    <h4>LINENUMBERS :{{ multiline | linenumbers }}</h4>
+    <h4>LOWER :{{ "aABbcCDd" | lower }}</h4>
+    <h4>MAKE_LIST :{{ "ARPAN" | make_list }}</h4>
+    <h4>SLICE :{{ list | slice:"2" }}</h4>
+    <h4>SLUGIFY :{{ multiline | slugify }}</h4>
+    <h4>TIME :{{ datetime | time:"H:i" }}</h4>
+    <h4>TITLE :{{ string | title }}</h4>
+    <h4>UPPER :{{ string | upper }}</h4>
+    <h4>WORDCOUNT :{{ string | wordcount }}</h4>
   </body>
 </html>
