@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block title %}Practice Project{% endblock %}
+{%block content%}
+<h1 style="text-align: center">Meals</h1>
+<div class="container">
+  <div class="d-flex justify-content-center flex-wrap">
+    {% for i in meals %}
+
+    <div class="card m-3" style="width: 18rem">
+      <img src="{{i.strMealThumb}}" class="card-img-top" alt="{{i.strMeal}}" />
+      <div class="card-body">
+        <h5 class="card-title">{{i.strMeal}}</h5>
+        <p class="card-text">Meal ID : {{i.idMeal}}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
