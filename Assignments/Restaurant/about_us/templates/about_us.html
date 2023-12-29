@@ -1,0 +1,45 @@
+{%extends 'base.html'%} {%load static%} {% block styles %} {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'about_us.css' %}" />
+{% endblock %} {%block title%} About {%endblock%}{%block content%}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12 my-auto py-2">
+      <img
+        src="{%static 'gordon.jpg'%}"
+        alt="gordon ramsay"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-lg-6 col-sm-12 my-auto py-2">
+      <h3>About Gordon Ramsay</h3>
+      <hr />
+      <p>
+        Internationally renowned, multi-Michelin starred chef Gordon Ramsay has
+        opened a string of successful restaurants across the globe, from the UK
+        and France to Singapore and the United States. Gordon has also become a
+        star of the small screen both in the UK and internationally, with shows
+        such as Kitchen Nightmares, Hell’s Kitchen, Hotel Hell and MasterChef
+        US.
+      </p>
+    </div>
+    <div class="col-lg-6 col-sm-12 my-auto py-2">
+      <img
+        src="{%static 'kitchen.jpg'%}"
+        alt="gordon ramsay"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-lg-6 col-sm-12 my-auto py-2">
+      <h3>Hells Kitchen</h3>
+      <hr />
+      <p>
+        Inspired by the global television series, Chef Ramsay’s Hell’s Kitchen
+        restaurants have become a fan-favorite in Las Vegas, serving over 1
+        million Beef Wellingtons since opening their doors in 2018. Today,
+        Hell's Kitchen serves guests in Las Vegas, Lake Tahoe, Southern
+        California, Atlantic City, Washington D.C., Foxwoods, and now Miami.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

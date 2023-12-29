@@ -1,0 +1,22 @@
+{%extends 'base.html'%} {%load static%} {% block styles %} {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'meal.css' %}" />
+{% endblock %}{%block title%} Food Items {%endblock%} {%block content%}
+<div class="container">
+  <div class="d-flex flex-wrap my-5 justify-content-center">
+    {%for i in categories %}
+    <div class="card mx-2 my-3" style="width: 18rem">
+      <img
+        src="{{i.strCategoryThumb}}"
+        class="card-img-top img-fluid"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{i.strCategory}}</h5>
+        <h5 class="card-title">ID : {{i.idCategory}}</h5>
+        <p class="card-text">{{ i.strCategoryDescription|truncatewords:10 }}</p>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock content%}
