@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Musician{% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<form action="" class="w-50 mx-auto mt-5" method = "post">
+    <h1>Add Musician Page</h1><br><br>
+    {% csrf_token %}
+    {{form|crispy}}
+    <button class="btn btn-warning">Submit</button>
+</form>
+
+{% endblock content %}
