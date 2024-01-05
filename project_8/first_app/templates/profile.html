@@ -2,6 +2,10 @@
 {% block title %}Profile{% endblock title %}
 {% block content %}
 
-<h1>Hello{{user}}</h1>
+<div class = "container">
+    <h1 class="text-center p-5 m-5">Hello {{user}}</h1>
+    <a href="{% url 'pass_change' %}">Change Pass</a><br>
+    <a href="{% url 'pass_change2' %}">Change Pass Without Current Pass</a>
+</div>
 
 {% endblock content %}
