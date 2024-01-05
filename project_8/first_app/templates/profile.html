@@ -1,11 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock title %}
 {% block content %}
+{%load crispy_forms_tags%}
 
 <div class = "container">
-    <h1 class="text-center p-5 m-5">Hello {{user}}</h1>
-    <a href="{% url 'pass_change' %}">Change Pass</a><br>
-    <a href="{% url 'pass_change2' %}">Change Pass Without Current Pass</a>
+    <h1 class="text-center p-3 m-3">Hello {{user}}</h1>
+    
+    {% if messages %}
+    {% for m in messages %}
+    <div class="text-center p-3 bg-success text-white font-weight-bold">{{m}}</div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="d-flex justify-content-center my-5"><a class="btn btn-info mx-5" href="{% url 'pass_change' %}">Change Pass</a>
+        <a class="btn btn-warning" href="{% url 'pass_change2' %}">Change Pass Without Current Pass</a></div>
 </div>
+
+<form method="post" style="width:50%;margin:auto" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}  
+    <div class="text-center p-3 bg-danger text-white font-weight-bold">{{er}}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% for fm in form %}
+    <!--{{form|crispy}}-->
+    {{fm.label_tag}}
+    {{fm}}
+    <p class="text-danger">{{fm.errors|striptags}}</p>
+    {% endfor %}
+    <br>
+
+    <button class="btn btn-warning" type="submit">Change Data</button>
+</form>
 
 {% endblock content %}
