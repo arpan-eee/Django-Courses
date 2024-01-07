@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}User{% endblock title %}
+{% block content %}
+
+<div class="container mb-5 pb-5">
+    <h3 class="text-center pt-4"><b>{{top}}</b></h1>
+    <form action="" method = "post" style="width:50%;margin:auto">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn btn-danger text-white mx-auto w-100 mt-2 py-2"><b>{{btn}}</b></button>
+    </form>
+</div>
+
+{% endblock content %}

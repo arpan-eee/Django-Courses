@@ -23,7 +23,7 @@ def register(request):
         if register_form.is_valid():
             register_form.save()
             messages.success(request,"Account Created Successfully")
-            return redirect('register')
+            return redirect('home')
     else:
         register_form = forms.RegistrationForm()
     return render(request, 'register.html',{'form':register_form,'type':'Register'})
@@ -38,7 +38,7 @@ def user_login(request):
             if user is not None:
                 messages.success(request,"Login Successful")
                 login(request,user)
-                return redirect('profile')
+                return redirect('home')
             else:
                 messages.warning(request,"Invalid Login Info")
                 return redirect('user_login')
@@ -63,6 +63,7 @@ def profile(request):
     data = Post.objects.filter(author=request.user)
     return render(request, 'profile.html',{'data':data})    
 
+@login_required
 def pass_change(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user,data=request.POST)
