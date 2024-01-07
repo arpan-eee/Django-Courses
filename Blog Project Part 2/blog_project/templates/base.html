@@ -45,6 +45,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'edit_profile' %}">Edit</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user_logout' %}">Log Out</a>
+              </li>
               {% block nav %}{% endblock nav %}             
             </ul>
             {% endif %}
