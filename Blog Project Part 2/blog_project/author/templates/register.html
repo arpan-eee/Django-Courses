@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center mt-5 mb-2">Add Profile Page</h1>
+    <h1 class="text-center mt-5 mb-2">{{type}} Page</h1>
     <form action="" style="width:50%;margin:auto" method="post">
         {% csrf_token %}
         {{form|crispy}}

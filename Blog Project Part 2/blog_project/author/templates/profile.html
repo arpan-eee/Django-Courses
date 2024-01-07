@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{%load crispy_forms_tags%}
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link " href="{% url 'edit_profile' %}">Edit</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'user_logout' %}">Log Out</a>
+</li>
+
+{% endblock%}
+{% block content %}
+
+<div class="container">
+    {% comment %} <a class="btn btn-primary" href="">Edit Your Profile</a> {% endcomment %}
+
+    <div class="d-flex flex-wrap justify-content-center mt-5 mx-5">
+        {% for post in data %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                <div class="card h-100" >
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.content|truncatechars:300}}</p>
+                        <p class="card-text text-danger"><b>{{post.author.first_name}} {{post.author.last_name}}</b></p>
+                        <p class="card-text text-primary">
+                            {% for cat in post.category.all %}
+                            <button class="btn btn-primary m-2 disabled">{{cat.name}}</button>
+                            {% endfor %}
+                        </p>
+                        <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+
+</div>
+{% endblock content %}
+

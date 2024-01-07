@@ -22,26 +22,47 @@
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_author' %}">Add Author</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
-            </li>
+            {% if request.user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_profile' %}">Add Profile</a>
-            </li>
+            {% endif %}
             
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <div class="form-inline my-2 my-lg-0">
+
+            {% if not request.user.is_authenticated %}
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_login' %}">Log In</a>
+              </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+              </li>
+              {% block nav %}{% endblock nav %}             
+            </ul>
+            {% endif %}
+       
+          </div>
         </div>
       </nav>
+
+      {% for m in messages %}
+      
+      <h2 class="text-center p-4 bg-{{m.tags}} text-white text-display-4 font-weight-bold">
+        {{m}}
+      </h2>
+      
+
+      {% comment %} <div class="text-center text-{{m.tags}}">{{m}}</div> {% endcomment %}
+      
+      {% endfor %}
 
       {% block content %}
       

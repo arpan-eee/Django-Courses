@@ -3,13 +3,16 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center mt-5 mb-2">Add Author Page</h1>
+    <h1 class="text-center mt-5 mb-2">Update Profile</h1>
+    <br>
+    <div class="text-center"><a class ="btn btn-info mx-auto px-5" href="{% url 'pass_change' %}">Change Password</a></div>
+    <br>
     <form action="" style="width:50%;margin:auto" method="post">
         {% csrf_token %}
         {{form|crispy}}
         <button class="btn btn-danger text-white">Submit</button>
     </form>
-
+    
 </div>
 {% endblock content %}
 
