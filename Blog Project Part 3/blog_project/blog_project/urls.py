@@ -2,7 +2,7 @@
 URL configuration for blog_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -15,16 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path,include
 from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='homepage'),
-    path('category/<slug:category_slug>/', views.home, name='category_wise_post'),
     path('author/', include('author.urls')),
-    path('post/', include('posts.urls')),
     path('category/', include('categories.urls')),
+    path('post/', include('post.urls')),
+    path('', views.home,name="home"),
+    path('category/<slug:category_slug>/', views.home,name="category_wise_post"),
 ]
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
