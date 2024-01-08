@@ -4,12 +4,13 @@
 
 <div class="d-flex flex-wrap">
     <div class="col-2 pt-5 pl-5">
+            <div class="form-check-label" for="{{cat.id}}">              
+              <a href="{% url 'home' %}" class="text-decoration-none text-white btn btn-info py-0 my-1">All</a>
+            </div>
         {% for cat in categories %}
-        <div class="form-check">
-            <label class="form-check-label" for="{{cat.id}}">              
+            <div class="form-check-label" for="{{cat.id}}">              
               <a href="{% url 'category_wise_post' cat.slug %}" class="text-decoration-none text-white btn btn-info py-0 my-1">{{cat.name}}</a>
-            </label>
-        </div>
+            </div>
         {% endfor %}
     </div>
     <div class="col-10">
@@ -18,6 +19,7 @@
             {% for post in data %}
                 <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
                     <div class="card h-100" >
+                        <img src="{{post.image.url}}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
                             <h5 class="card-title">{{post.title}}</h5>
                             <p class="card-text">{{post.content|truncatechars:300}}</p>
