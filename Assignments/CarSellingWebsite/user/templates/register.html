@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%  load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+    <form style="width:80% ; margin : auto" method="post">
+        <h1 class="mt-3 mb-1 text-center">{{top}}</h1>
+        {% csrf_token %}
+    <!--{{form | crispy}}-->
+    {% for f in form %}
+    {{f.label_tag}}
+    {{f}}
+    <h5 class="text-danger my-3 text-center">{{f.errors|striptags}}</h5>
+    {% endfor %}
+    
+    <button class="btn btn-warning mb-5 mt-5 w-100"><b>{{btn}}</b></button>
+    </form>
+</div>
+
+{% endblock %}
