@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import  AuthenticationForm, PasswordChangeForm
+from car.models import Car
+from car.forms import CommentForm
 
 # Create your views here.
 
@@ -61,7 +63,12 @@ def edit_profile(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    data = Car.objects.filter(owner=request.user)
+    if request.user.first_name :
+        display_name = request.user.first_name
+    else:
+        display_name = request.user.username
+    return render(request, 'profile.html',{'data': data,'display_name' : display_name})
 
 @login_required
 def pass_change(request):
@@ -76,3 +83,16 @@ def pass_change(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'register.html', {'form' : form, 'top' : 'Edit Password','btn' : 'Save Changes'})
+
+def comment(request,id):
+    car = Car.objects.get(pk=id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.instance.car = car
+            comment_form.save()
+            messages.success(request, 'Comment Added')
+            return redirect('home')    
+    else:
+        comment_form = CommentForm()
+    return render(request, 'register.html', {'form' : comment_form, 'top' : 'Add Comment','btn' : 'Comment'})

@@ -2,6 +2,27 @@
 {% block title %}Homepage{% endblock title %}
 {% block content %}
 
-<h1 class="text-center">Profile Page</h1>
+<h1 class="text-center mt-5"> Car bought by {{display_name}}</h1>
+<div class="container">
+    <div class="d-flex flex-wrap justify-content-center pt-5 gap-3">
+      {% for car in data %}
+      <div class="col-sm-12 col-lg-3">
+        <div class="card m-2 h-100">
+          <div class="card-body d-flex align-items-center">
+            <div class="">
+                <img src="{{car.image.url}}" class="card-img-top img-fluid" alt="car" height="180rem">
+                <h4 class="card-title pt-2 text-center"><a href="" class="text-decoration-none text-dark">{{car.name}}</a></h4>
+                
+                <p class="text-center"><b>Price : {{car.price}}$</b></p>
+                <h5 class="text-center">{{car.brand.name}}</h5>
+                <div class="text-center"><a class="btn btn-primary text-white text-center" href="{% url 'car_details' car.id %}">See Details</a></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
 
 {% endblock content %}

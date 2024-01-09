@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Car Details{% endblock title %}
+{% block content %}
+
+{% for c in car %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 my-auto py-4">
+            <img src="{{c.image.url}}" alt="car" class="img-fluid">
+        </div>
+        <div class="col-lg-6 col-sm-12 my-auto">
+            <h2 class="text-center">Brand : {{c.brand.name}} <br> Model : {{c.name}}</h2>
+            <h4 class="text-center">Price : {{c.price}}</h4>
+            <h4 class="text-center">Available Units : {{c.quantity}}</h4>
+            <p class="text-center">Brand : {{c.description}}</p>
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-info w-100 fs-5" href="{% url 'buy' c.id %}">Buy Now</a>
+            {% endif %}
+        </div>
+    </div>
+    <a class="btn btn-info w-100 fs-5" href="{% url 'comment' c.id %}">Add Comment</a>
+</div>
+{% endfor %}
+<div class="container">
+    {% for comment in comments %}
+<div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">
+          <strong>{{ comment.name }}</strong>
+          <span class="text-muted float-end">
+            <small>{{ comment.created_on }}</small>
+          </span>
+        </h5>
+        <p class="card-text">{{ comment.body }}</p>
+      </div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock content %}
