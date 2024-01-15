@@ -22,13 +22,15 @@ class UserRegistrationView(FormView):
 
 class UserLoginView(LoginView):
     template_name = 'accounts/user_login.html'
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 class UserLogoutView(LogoutView):
     def get_success_url(self):
         if self.request.user.is_authenticated:
             logout(self.request)
         return reverse_lazy('home')
+
 
 class UserBankAccountUpdateView(View):
     template_name = 'accounts/profile.html'
